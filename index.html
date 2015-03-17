@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TEST INJ JS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script type="text/javascript" src="jquery.min.js"></script>
+        
+        <script type="text/javascript">
+            var input = {
+                "rest" : "http://localhost:8383/libJSOrtecProjetInnov/"
+                ,"page" : "pageCreate"
+                ,"debug" : true
+            };
+
+            var output = {
+                "value" : ""
+            };
+        </script>
+    </head>
+    <body>
+        <div id='content'>TODO write content</div>
+        
+        <script type="text/javascript">
+        $.getScript(input.rest+"libProject.js")
+            .done(function( script, textStatus ) {
+                console.log( "libProject.js : statut = " +  textStatus );
+            })
+            .fail(function( jqxhr, settings, exception ) {
+                console.log( "libProject.js : Triggered ajaxError handler." );
+            })
+        ;
+        </script>
+    </body>
+</html>

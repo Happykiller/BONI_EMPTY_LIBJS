@@ -1,41 +1,18 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-    <head>
-        <title>TEST INJ JS</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <script type="text/javascript" src="jquery.min.js"></script>
-        
-        <script type="text/javascript">
-            var input = {
-                "rest" : "http://localhost:8383/libJSOrtecProjetInnov/"
-                ,"page" : "pageCreate"
-                ,"debug" : true
-            };
-
-            var output = {
-                "value" : ""
-            };
-        </script>
-    </head>
-    <body>
-        <div id='content'>TODO write content</div>
-        
-        <script type="text/javascript">
-        $.getScript(input.rest+"libProject.js")
-            .done(function( script, textStatus ) {
-                console.log( "libProject.js : statut = " +  textStatus );
-            })
-            .fail(function( jqxhr, settings, exception ) {
-                console.log( "libProject.js : Triggered ajaxError handler." );
-            })
-        ;
-        </script>
-    </body>
+<head>
+  <meta charset="utf-8">
+  <title>BonitaLib tests</title>
+  <link rel="stylesheet" media="all" href="vendor/mocha.css">
+</head>
+<body>
+  <div id="mocha"><p><a href=".">Index</a></p></div>
+  <div id="messages"></div>
+  <div id="fixtures"></div>
+  <script src="vendor/mocha.js"></script>
+  <script src="vendor/chai.js"></script>
+  <script src="BonitaLib.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="test/test.js"></script>
+  <script>mocha.run();</script>
+</body>
 </html>

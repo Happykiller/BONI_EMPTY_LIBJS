@@ -1,0 +1,27 @@
+{
+  "name": "boni_empty_libjs",
+  "version": "1.0.0",
+  "description": "library for start",
+  "main": "BonitaLib.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Happykiller/BONI_EMPTY_LIBJS.git"
+  },
+  "keywords": [
+    "library",
+    "js",
+    "bonita"
+  ],
+  "author": "Fabrice Rosito",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Happykiller/BONI_EMPTY_LIBJS/issues"
+  },
+  "homepage": "https://github.com/Happykiller/BONI_EMPTY_LIBJS#readme"
+}

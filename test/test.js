@@ -6,5 +6,53 @@ describe("Tests", function() {
       var bonitaLib = new BonitaLib();
       expect(bonitaLib.sayHello("Fabrice")).to.equal("Hello : Fabrice");
     });
+  })
+  describe("mergeRecursive", function() {
+    it("good merge ?", function() {
+      var bonitaLib = new BonitaLib();
+
+      var objDefault = {
+        a : 1,
+        b : 2,
+        c : {
+          ca : 1,
+          cb : 2,
+          cc : {
+            cca : 100,
+            ccb : 200
+          }
+        }
+      };
+
+      var objInput = {
+        a : 10,
+        c : {
+          ca : 10,
+          cc : {
+            cca : 101,
+            ccb : 202
+          }
+        }
+      };
+
+      var expected = {
+        a : 10,
+        b : 2,
+        c : {
+          ca : 10,
+          cb : 2,
+          cc : {
+            cca : 101,
+            ccb : 202
+          }
+        }
+      };
+
+      var objReturn = bonitaLib.mergeRecursive({"default":objDefault,"source":objInput});
+
+        console.log(objReturn);
+
+      expect(objReturn).to.deep.equal(expected);
+    });
   });
 });

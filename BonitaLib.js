@@ -21,7 +21,7 @@
             var objReturn = this.clone(params.default);
 
               for (var p in objReturn) {
-                  if ( objReturn[p].constructor === Object ) {
+                  if ((objReturn[p] !== null) && ( objReturn[p].constructor === Object )) {
                       objReturn[p] = this.mergeRecursive({"default":objReturn[p], "source":params.source[p]});
                   } else {
                       if(params.source[p] !== undefined){

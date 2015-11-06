@@ -16,12 +16,13 @@ describe("Tests", function() {
         b : 2,
         c : {
           ca : 1,
-          cb : 2,
+          cb : null,
           cc : {
             cca : 100,
             ccb : 200
           }
-        }
+        },
+        d : null
       };
 
       var objInput = {
@@ -32,7 +33,8 @@ describe("Tests", function() {
             cca : 101,
             ccb : 202
           }
-        }
+        },
+        d : 42
       };
 
       var expected = {
@@ -40,12 +42,13 @@ describe("Tests", function() {
         b : 2,
         c : {
           ca : 10,
-          cb : 2,
+          cb : null,
           cc : {
             cca : 101,
             ccb : 202
           }
-        }
+        },
+        d : 42
       };
 
       var objReturn = bonitaLib.mergeRecursive({"default":objDefault,"source":objInput});

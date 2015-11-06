@@ -12,4 +12,6 @@
       return "Hello : " + who;
     }
   };
+
+  //todo merge pour output
 })(this);

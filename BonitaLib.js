@@ -21,11 +21,16 @@
             var objReturn = this.clone(params.default);
 
               for (var p in objReturn) {
-                  if ((objReturn[p] !== null) && ( objReturn[p].constructor === Object )) {
-                      objReturn[p] = this.mergeRecursive({"default":objReturn[p], "source":params.source[p]});
-                  } else {
-                      if(params.source[p] !== undefined){
-                          objReturn[p] = params.source[p];
+                  console.log( Array.isArray(objReturn[p]) );
+                  if(Array.isArray(objReturn[p])){
+
+                  }else{
+                      if ((objReturn[p] !== null) && ( objReturn[p].constructor === Object )) {
+                          objReturn[p] = this.mergeRecursive({"default": objReturn[p], "source": params.source[p]});
+                      } else {
+                          if(params.source[p] !== undefined){
+                              objReturn[p] = params.source[p];
+                          }
                       }
                   }
               }

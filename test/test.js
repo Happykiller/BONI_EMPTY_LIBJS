@@ -8,7 +8,7 @@ describe("Tests", function() {
     });
   })
   describe("mergeRecursive", function() {
-    it("good merge ?", function() {
+    it("merge simple", function() {
       var bonitaLib = new BonitaLib();
 
       var objDefault = {
@@ -53,7 +53,84 @@ describe("Tests", function() {
 
       var objReturn = bonitaLib.mergeRecursive({"default":objDefault,"source":objInput});
 
-        console.log(objReturn);
+      console.log(objReturn);
+
+      expect(objReturn).to.deep.equal(expected);
+    });
+    it("merge array", function() {
+      var bonitaLib = new BonitaLib();
+
+      var objDefault = {
+        a : [
+          {
+            a : "",
+            b : ""
+          }
+        ],
+        b : [],
+        c : [
+          {
+            a : "",
+            b : [
+              {
+                a : "",
+                b : "",
+              }
+            ]
+          }
+        ]
+      };
+
+      var objInput = {
+        a : [
+          {
+            a : "",
+            b : ""
+          },
+          {
+            a : "fba"
+          }
+        ],
+        c : [
+          {
+            a : "",
+            b : [
+              {
+                b : "hbb"
+              }
+            ]
+          }
+        ]
+      };
+
+      var expected = {
+        a : [
+          {
+            a : "",
+            b : ""
+          },
+          {
+            a : "fba",
+            b : ""
+          }
+        ],
+        b : [],
+        c : [
+          {
+            a : "",
+            b : [
+              {
+                a : "",
+                b : "hbb"
+              }
+            ]
+          }
+        ]
+      };
+
+      var objReturn = bonitaLib.mergeRecursive({"default":objDefault,"source":objInput});
+
+      console.log(objReturn);
 
       expect(objReturn).to.deep.equal(expected);
     });

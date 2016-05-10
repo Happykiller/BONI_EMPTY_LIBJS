@@ -246,26 +246,6 @@ describe("Tests", function() {
       expect(objReturn).to.deep.equal(expected);
     });
 
-    it("merge array int", function() {
-      var bonitaLib = new BonitaLib();
-
-      var objDefault = {
-        a : [],
-      };
-
-      var objInput = {
-        a : [1,2]
-      };
-
-      var expected = {
-        a : [1,2]
-      };
-
-      var objReturn = bonitaLib.mergeRecursive({"default":objDefault,"source":objInput});
-
-      expect(objReturn).to.deep.equal(expected);
-    });
-
     it("merge array more 3", function() {
       var bonitaLib = new BonitaLib();
 
@@ -299,6 +279,5 @@ describe("Tests", function() {
 
       expect(objReturn).to.deep.equal(expected);
     });
-
   });
 });

@@ -20,50 +20,31 @@
         mergeRecursive: function(params) {
             var objReturn = this.clone(params.default);
 
-              for (var p in objReturn) {
-                  if(Array.isArray(objReturn[p])){
-                      if(params.source[p] !== undefined){
-                          if(params.source[p].length >= 1){
-                              for(var indice in params.source[p]){
-                                  if ((objReturn[p][0] !== undefined) && (objReturn[p][0] !== null) && ( objReturn[p][0].constructor === Object )) {
-                                      objReturn[p][indice] = this.mergeRecursive({"default": params.default[p][0], "source": params.source[p][indice]});
-                                  } else {
-                                      if(params.source[p][indice] !== undefined){
-                                          objReturn[p][indice] = params.source[p][indice];
-                                      }
-                                  }
-                              }
-                          }else{
-                              objReturn[p] = [];
-                          }
-                      }else{
-                          for(var indice in params.source[p]){
-                              if ((objReturn[p][0] !== undefined) && (objReturn[p][0] !== null) && ( objReturn[p][0].constructor === Object )) {
-                                  objReturn[p][indice] = this.mergeRecursive({"default": params.default[p][0], "source": params.source[p][indice]});
-                              } else {
-                                  if(params.source[p][indice] !== undefined){
-                                      objReturn[p][indice] = params.source[p][indice];
-                                  }
-                              }
-                          }
-                      }
-                  }else{
-                      if ((objReturn[p] !== null) && ( objReturn[p].constructor === Object )) {
-                          objReturn[p] = this.mergeRecursive({"default": objReturn[p], "source": params.source[p]});
-                      } else {
-                          if(params.source[p] !== undefined){
-                              objReturn[p] = params.source[p];
-                          }
-                      }
+            //if array
+            if(Array.isArray(objReturn)){
+              //for each elt of target we apply the partn array
+              var defaultEltArray = objReturn[0];
+              objReturn = [];
+              for(var index in params.source){
+                  objReturn.push(this.mergeRecursive({default: defaultEltArray, source: params.source[index]}));
+              }
+              //if object
+            }else if((objReturn !== null) && (objReturn !== undefined) && (objReturn.constructor === Object)){
+              for(var key in objReturn){
+                  if(params.source[key] !== undefined){
+                      objReturn[key] =  this.mergeRecursive({default: objReturn[key], source: params.source[key]});
                   }
               }
-
+            
               //check if sources attrib in more
-              for (var p in params.source) {
-                  if(!objReturn.hasOwnProperty(p)){
-                      objReturn[p] = params.source[p];
+              for (var key in params.source) {
+                  if(!objReturn.hasOwnProperty(key)){
+                      objReturn[key] = params.source[key];
                   }
               }
+            }else if(params.source !== null){
+              objReturn = params.source;
+            }
 
             return objReturn;
         },

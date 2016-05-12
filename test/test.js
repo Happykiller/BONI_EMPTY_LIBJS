@@ -1,6 +1,6 @@
 var expect = chai.expect;
 
-describe("Tests", function() {
+  describe("Tests", function() {
 
   describe("sayHello", function() {
     it("should say hello", function() {
@@ -278,6 +278,40 @@ describe("Tests", function() {
       var objReturn = bonitaLib.mergeRecursive({"default":objDefault,"source":objInput});
 
       expect(objReturn).to.deep.equal(expected);
+    });
+  }),
+
+  describe("formatterJsonToHtml", function() {
+    it("formatterJsonToHtml 1", function() {
+      var bonitaLib = new BonitaLib();
+
+      var strReturn = bonitaLib.formatterJsonToHtml(4);
+
+      var strAttemp = '<span style="color:#2980b9;">4</span>';
+
+      expect(strReturn).to.equal(strAttemp);
+    });
+
+
+    it("formatterJsonToHtml 2", function() {
+      var bonitaLib = new BonitaLib();
+
+      var strReturn = bonitaLib.formatterJsonToHtml(['4',5]);
+
+      var strAttemp = 'Array <ul><li><span style="color:#9b59b6;">0:</span> <span style="color:#c0392b;">"4"</span></li><li><span style="color:#9b59b6;">1:</span> <span style="color:#2980b9;">5</span></li></ul>';
+
+      expect(strReturn).to.equal(strAttemp);
+    });
+
+
+    it("formatterJsonToHtml 3", function() {
+      var bonitaLib = new BonitaLib();
+
+      var strReturn = bonitaLib.formatterJsonToHtml({"name":"fabrice", "age": 12});
+
+      var strAttemp = 'Object <ul><li><span style="color:#9b59b6;">name:</span> <span style="color:#c0392b;">"fabrice"</span></li><li><span style="color:#9b59b6;">age:</span> <span style="color:#2980b9;">12</span></li></ul>';
+
+      expect(strReturn).to.equal(strAttemp);
     });
   });
 });

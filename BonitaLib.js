@@ -1,3 +1,7 @@
+/**
+ * @use var bonitaLib = new BonitaLib();
+ */
+
 (function(exports){
     "use strict";
 
@@ -63,6 +67,40 @@
             }
 
             return temp;
+        },
+        /**
+         * @param {Object}
+         * @returns {String}
+         */
+        formatterJsonToHtml: function(obj) {
+            var strHtml = '';
+
+            //if array
+            if(Array.isArray(obj)){
+                strHtml += 'Array <ul>';
+                for(var index in obj){
+                    strHtml += '<li><span style="color:#9b59b6;">' + index + ':</span> ' + this.formatterJsonToHtml(obj[index]) + '</li>';
+                }
+                strHtml += '</ul>';
+            }else if((obj !== null) && (obj !== undefined) && (obj.constructor === Object)){
+                strHtml += 'Object <ul>';
+                for(var key in obj){
+                    strHtml += '<li><span style="color:#9b59b6;">' + key + ':</span> ' + this.formatterJsonToHtml(obj[key]) + '</li>';
+                }
+                strHtml += '</ul>';
+            }else {
+                if(obj === null){
+                    strHtml = '<span style="color:#95a5a6;">'+obj+'</span>';
+                }else if(typeof obj === "number"){
+                    strHtml = '<span style="color:#2980b9;">'+obj+'</span>';
+                }else if (typeof obj === "string") {
+                    strHtml = '<span style="color:#c0392b;">"'+obj+'"</span>';
+                }else{
+                    strHtml = '<span style="color:#2980b9;">'+obj+'</span>';
+                }
+            }
+
+            return strHtml;
         }
     };
 })(this);

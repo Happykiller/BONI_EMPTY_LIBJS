@@ -77,13 +77,13 @@
 
             //if array
             if(Array.isArray(obj)){
-                strHtml += 'Array <ul>';
+                strHtml += 'Array['+obj.length+'] <ul>';
                 for(var index in obj){
                     strHtml += '<li><span style="color:#9b59b6;">' + index + ':</span> ' + this.formatterJsonToHtml(obj[index]) + '</li>';
                 }
                 strHtml += '</ul>';
             }else if((obj !== null) && (obj !== undefined) && (obj.constructor === Object)){
-                strHtml += 'Object <ul>';
+                strHtml += 'Object{'+Object.keys(obj).length+'} <ul>';
                 for(var key in obj){
                     strHtml += '<li><span style="color:#9b59b6;">' + key + ':</span> ' + this.formatterJsonToHtml(obj[key]) + '</li>';
                 }

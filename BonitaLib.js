@@ -70,6 +70,7 @@
         },
         /**
          * @param {Object}
+		 * @ex : var bonitaLib = new BonitaLib(); return bonitaLib.formatterJsonToHtml($data.context);
          * @returns {String}
          */
         formatterJsonToHtml: function(obj) {

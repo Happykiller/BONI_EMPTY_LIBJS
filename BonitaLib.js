@@ -12,9 +12,18 @@
     exports.BonitaLib = BonitaLib;
 
     BonitaLib.prototype = {
+       /**
+        * @param {string} who
+        * @returns {string}
+        */
         sayHello: function(who) {
           return "Hello : " + who;
         },
+        /**
+         * @param {string|integer} num
+          * @param {integer} length
+         * @returns {string}
+         */
         pad: function(num, length){
           if(typeof num !== "integer"){
               num = parseInt(num);
@@ -25,6 +34,11 @@
           }
           return response;
         },
+        /**
+         * @param {Date} myDate
+         * @param {string} format
+         * @returns {string}
+         */
         dateFormat: function(myDate, format){
           var yearFull = myDate.getFullYear();
           var year = myDate.getYear();

@@ -9,6 +9,24 @@ var expect = chai.expect;
     });
   })
 
+  describe("pad", function(){
+    it("pad 2", function(){
+      var bonitaLib = new BonitaLib();
+      expect(bonitaLib.pad(2, 2)).to.equal("02");
+    });
+    it("pad 4", function(){
+      var bonitaLib = new BonitaLib();
+      expect(bonitaLib.pad(42, 4)).to.equal("0042");
+    });
+  })
+
+  describe("dateFormat", function(){
+    it("format basic", function(){
+      var bonitaLib = new BonitaLib();
+      expect(bonitaLib.dateFormat(new Date("2016-08-01"), "dd/mm/yyyy")).to.equal("01/08/2016");
+    });
+  })
+
   describe("clone", function(){
     it("merge array change default", function() {
       var bonitaLib = new BonitaLib();

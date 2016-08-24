@@ -15,12 +15,35 @@
         sayHello: function(who) {
           return "Hello : " + who;
         },
-          /***
-           * @param {Object} params.default
-           * @param {Object} params.source
-           * @param {Object} params
-           * @returns {Object}
-           */
+        pad: function(num, length){
+          if(typeof num !== "integer"){
+              num = parseInt(num);
+          }
+          var response = num + "";
+          while (response.length < length){
+            response = "0" + response;
+          }
+          return response;
+        },
+        dateFormat: function(myDate, format){
+          var yearFull = myDate.getFullYear();
+          var year = myDate.getYear();
+          var mounth = this.pad(myDate.getMonth() + 1, 2);
+          var day = this.pad(myDate.getDate(), 2);
+          var hour = this.pad(myDate.getHours(), 2);
+          var minute = this.pad(myDate.getMinutes(), 2);
+          var second = this.pad(myDate.getSeconds(), 2);
+
+          var response = format.replace("yyyy", yearFull).replace("yy",year).replace("mm",mounth).replace("dd",day).replace("hh",hour).replace("mi",minute).replace("ss",second);
+
+          return response;
+        },
+        /**
+         * @param {Object} params.default
+         * @param {Object} params.source
+         * @param {Object} params
+         * @returns {Object}
+         */
         mergeRecursive: function(params) {
             var objReturn = this.clone(params.default);
 
@@ -39,7 +62,7 @@
                       objReturn[key] =  this.mergeRecursive({default: objReturn[key], source: params.source[key]});
                   }
               }
-            
+
               //check if sources attrib in more
               for (var key in params.source) {
                   if(!objReturn.hasOwnProperty(key)){
@@ -53,9 +76,9 @@
             return objReturn;
         },
         /**
-        * @param {Object}
-        * @returns {Object}
-        */
+         * @param {Object}
+         * @returns {Object}
+         */
         clone: function(obj) {
             if (obj === null || typeof obj !== 'object') {
                 return obj;
@@ -70,7 +93,7 @@
         },
         /**
          * @param {Object}
-		 * @ex : var bonitaLib = new BonitaLib(); return bonitaLib.formatterJsonToHtml($data.context);
+		     * @ex : var bonitaLib = new BonitaLib(); return bonitaLib.formatterJsonToHtml($data.context);
          * @returns {String}
          */
         formatterJsonToHtml: function(obj) {

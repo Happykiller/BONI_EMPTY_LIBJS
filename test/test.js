@@ -332,4 +332,30 @@ var expect = chai.expect;
       expect(strReturn).to.equal(strAttemp);
     });
   });
+
+  describe( "order", function(assert ) {
+    it("order1", function() {
+      var bonitaLib = new BonitaLib();
+
+      var inputs = [2, 1, 3];
+
+      var response = bonitaLib.order({
+        collection: inputs,
+        compare: function(elt1, elt2){
+                if(elt1 > elt2){
+                    return 1;
+                }else if(elt1 < elt2){
+                    return -1;
+                }else{
+                    return 0;
+                }
+            }
+        });
+
+        var expected = [1, 2, 3];
+
+        expect(response).to.deep.equal(expected);
+      }
+    );
+  });
 });

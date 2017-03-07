@@ -139,6 +139,75 @@
             }
 
             return strHtml;
+        },
+        /**
+        * @name $.Oda.Tooling.order
+        * @param {Object} p_params
+        * @param p_params.collection
+        * @param p_params.compare with a, b
+        * @desc compare must be return 1 si a before b, -1 if b before a, 0 if equal
+        * @returns {$.Oda.Tooling}
+        */
+        order: function(p_params) {
+            try {
+                var clone = this.clone(p_params.collection);
+
+                var newCollection = this.orderInter({
+                    collectionOri:  clone,
+                    collectionDest: [],
+                    compare: p_params.compare
+                });
+                return newCollection;
+            } catch (er) {
+                console.log("order : " + er.message);
+                return null;
+            }
+        },
+        /**
+         * @name $.Oda.Tooling.orderInter
+         * @param {Object} p_params
+         * @param p_params.collectionOri
+         * @param p_params.collectionDest
+         * @param p_params.compare
+         * @returns {$.Oda.Tooling}
+         */
+        orderInter: function(p_params) {
+            try {
+                if(p_params.collectionOri.length > 0){
+                    var min = {
+                        value: null,
+                        index: null
+                    };
+
+                    for(var index in p_params.collectionOri){
+                        var elt = p_params.collectionOri[index];
+                        if(min.value === null){
+                            min.value = elt;
+                            min.index = parseInt(index);
+                        }else{
+                            var resultCompare = p_params.compare(min.value, elt);
+                            if(resultCompare === 1){
+                                min.value = elt;
+                                min.index = parseInt(index);
+                            }
+                        }
+                    }
+
+                    p_params.collectionOri.splice(min.index,1);
+                    p_params.collectionDest.push(min.value);
+
+                    return this.orderInter({
+                        collectionOri:  p_params.collectionOri,
+                        collectionDest: p_params.collectionDest,
+                        compare: p_params.compare
+                    });
+                }else{
+                    return p_params.collectionDest;
+                }
+            } catch (er) {
+                console.log("orderInter : " + er.message);
+                return null;
+            }
         }
     };
 })(this);

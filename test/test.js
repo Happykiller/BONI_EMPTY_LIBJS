@@ -333,7 +333,7 @@ var expect = chai.expect;
     });
   });
 
-  describe( "order", function(assert ) {
+  describe( "order", function() {
     it("order1", function() {
       var bonitaLib = new BonitaLib();
 
@@ -355,6 +355,21 @@ var expect = chai.expect;
         var expected = [1, 2, 3];
 
         expect(response).to.deep.equal(expected);
+      }
+    );
+  });
+
+  describe( "removeDiacritics", function() {
+    it("removeDiacritics1", function() {
+        var bonitaLib = new BonitaLib();
+
+        var input = "L'avantage d'utiliser le lorem ipsum est bien évidemment de pouvoir créer des maquettes ou de remplir un site internet de contenus qui présentent un rendu s'approchant un maximum du rendu final. \n Par défaut lorem ipsum ne contient pas d'accent ni de caractères spéciaux contrairement à la langue française qui en contient beaucoup. C'est sur ce critère que nous proposons une solution avec cet outil qui générant du faux-texte lorem ipsum mais avec en plus, des caractères spéciaux tel que les accents ou certains symboles utiles pour la langue française. \n L'utilisation du lorem standard est facile d’utilisation mais lorsque le futur client utilisera votre logiciel il se peut que certains caractères spéciaux ou qu'un accent ne soient pas codés correctement. \n Cette page a pour but donc de pouvoir perdre le moins de temps possible et donc de tester directement si tous les encodages de base de donnée ou des sites sont les bons de plus il permet de récuperer un code css avec le texte formaté !";
+
+        var response = bonitaLib.removeDiacritics({str:input});
+
+        var expected = "L'avantage d'utiliser le lorem ipsum est bien evidemment de pouvoir creer des maquettes ou de remplir un site internet de contenus qui presentent un rendu s'approchant un maximum du rendu final. \n Par defaut lorem ipsum ne contient pas d'accent ni de caracteres speciaux contrairement a la langue francaise qui en contient beaucoup. C'est sur ce critere que nous proposons une solution avec cet outil qui generant du faux-texte lorem ipsum mais avec en plus, des caracteres speciaux tel que les accents ou certains symboles utiles pour la langue francaise. \n L'utilisation du lorem standard est facile d’utilisation mais lorsque le futur client utilisera votre logiciel il se peut que certains caracteres speciaux ou qu'un accent ne soient pas codes correctement. \n Cette page a pour but donc de pouvoir perdre le moins de temps possible et donc de tester directement si tous les encodages de base de donnee ou des sites sont les bons de plus il permet de recuperer un code css avec le texte formate !";
+
+        expect(response).to.equal(expected);
       }
     );
   });
